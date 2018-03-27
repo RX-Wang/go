@@ -1,4 +1,4 @@
-package version
+package pkg1
 
 import (
 	"fmt"
@@ -9,5 +9,5 @@ import (
 注释
 */
 func Version() {
-	fmt.Printf("%s", runtime.Version())
+	fmt.Printf("%s\n", runtime.Version())
 }
