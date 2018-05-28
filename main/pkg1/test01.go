@@ -12,7 +12,8 @@ import (
 } */
 
 /**
-	入参、返回值
+	(p1, p2 int)：入参
+	(r1 int, r2 string)：返回值
 */
 /* func Test02(p1, p2 int) (r1 int, r2 string) {
 	fmt.Println("Test02");

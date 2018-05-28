@@ -9,5 +9,5 @@ import (
 注释
 */
 func Version() {
-	fmt.Printf("%s\n", runtime.Version())
+	fmt.Printf("go`s version:%s\n", runtime.Version())
 }
