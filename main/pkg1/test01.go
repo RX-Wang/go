@@ -5,6 +5,16 @@ import (
 )
 
 /**
+Bl 全局变量
+*/
+var Bl int
+
+/**
+ClConst 全局常量
+*/
+const ClConst string = "abcd"
+
+/**
 注释 ：函数接收参数
 */
 /* func Test01(name string, age int) {
@@ -12,8 +22,8 @@ import (
 } */
 
 /**
-	(p1, p2 int)：入参
-	(r1 int, r2 string)：返回值
+(p1, p2 int)：入参
+(r1 int, r2 string)：返回值
 */
 /* func Test02(p1, p2 int) (r1 int, r2 string) {
 	fmt.Println("Test02");
