@@ -7,6 +7,7 @@ import "fmt"
 
 func init() {
 	s := "i'm a string"
+	fmt.Printf("var == *(&var): %t\n", s == *(&s))
 	fmt.Printf("s's address：%p\n", &s)
 	var p *string = &s
 	var q *string
