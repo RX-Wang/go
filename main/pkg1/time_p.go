@@ -1,11 +1,15 @@
 package pkg1
 
-import (
+/**
+	时间类型 
+*/
+
+/* import (
 	"fmt"
 	"time"
-)
+) */
 
-var week time.Duration
+/* var week time.Duration
 
 func init() {
 	t := time.Now()
@@ -26,4 +30,4 @@ func init() {
 	s := t.Format("20060102")
 	fmt.Println("9--", t, "=>", s)
 	// Wed Dec 21 08:52:14 +0000 UTC 2011 => 20111221
-}
+} */
