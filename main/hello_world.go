@@ -28,7 +28,8 @@ func main() {
 	// n()
 	// a = "G"
   // print(a)
-  // f1()
+	// f1()
+	// print(`This is a raw string \n`) // 会原样输出
 }
 
 /* func n() { print(a) }
