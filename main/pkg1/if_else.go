@@ -7,6 +7,6 @@ func init() {
 	if aNum := 8; aNum > 10 {
 		fmt.Printf("aNum is greater than 10\n")
 	} else {
-		fmt.Printf("aNum is %d\n", aNum)
+		// fmt.Printf("aNum is %d\n", aNum)
 	}
 }
