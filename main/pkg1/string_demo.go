@@ -1,17 +1,15 @@
 /**
-	字符串
+字符串
 */
 package pkg1
 
-import (
-	// "fmt"
-	// "strings"
-	// "strconv"
-)
+// "fmt"
+// "strings"
+// "strconv"
 
 func init() {
 	/**
-		1、字符串截取
+	1、字符串拆分
 	*/
 
 	/* str := "The quick   brown  fox jumps  over the   lazy dog"
@@ -36,18 +34,18 @@ func init() {
 	fmt.Printf("sl2 joined by ;: %s\n", str3) */
 
 	/**
-		2、字符串 与其他类型之间的转换
+	2、字符串 与其他类型之间的转换
 	*/
 	/* var orig string = "666"
 	var an int
 	var newS string
 	var float_64 float64 = 12.11111111111111111111111
-	
+
 	// 获取当前操作系统 ints 的字节长度
 	fmt.Printf("The size of ints is: %d\n", strconv.IntSize)
 	// string -> int
 	an, _ = strconv.Atoi(orig)
-	fmt.Printf("The integer is: %d\n", an) 
+	fmt.Printf("The integer is: %d\n", an)
 	an = an + 5
 	// int -> string
 	newS = strconv.Itoa(an)
