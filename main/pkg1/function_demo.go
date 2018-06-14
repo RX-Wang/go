@@ -42,7 +42,7 @@ func init() {
 	// 6、 defer 和追踪
 	// function1()
 	// abc()
-	func1("Go")
+	// func1("Go")
 
 
 	// 练习题：
