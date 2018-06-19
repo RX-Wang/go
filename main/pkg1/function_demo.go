@@ -4,9 +4,9 @@ package pkg1
 import (
 	"errors"
 	"fmt"
-	"math"
 	"io"
 	"log"
+	"math"
 )
 
 var num int = 10
@@ -43,7 +43,7 @@ func init() {
 	// function1()
 	// abc()
 	// func1("Go")
-
+	func2()
 
 	// 练习题：
 	/* ret1, err1 := MySqrt(-1)
@@ -134,6 +134,19 @@ func func1(s string) (n int, err error) {
 	return 7, io.EOF
 }
 
+func func2() {
+	i := 0
+	defer ff(i)
+	defer func() {
+		fmt.Println("打印--3：", i)
+	}()
+	defer fmt.Println("打印--2：", i)
+	i++
+	fmt.Println("打印--1：", i)
+}
+func ff(i int) {
+	fmt.Println("打印--4：", i)
+}
 
 //  练习：
 func MySqrt(f float64) (float64, error) {
