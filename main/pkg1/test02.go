@@ -2,7 +2,7 @@ package pkg1
 
 import (
 	"fmt"
-	"sort"
+	// "sort"
 )
 
 type Person struct {
@@ -24,7 +24,7 @@ func (a ByAge) Less(i, j int) bool { return a[i].Age < a[j].Age }
 
 
 func init() {
-	people := []Person{
+/* 	people := []Person{
 		{"Bob", 31},
 		{"John", 42},
 		{"Michael", 17},
@@ -38,5 +38,5 @@ func init() {
 	sort.Slice(people, func(i, j int) bool {
 		return people[i].Age > people[j].Age
 	})
-	fmt.Println(people)
+	fmt.Println(people) */
 }

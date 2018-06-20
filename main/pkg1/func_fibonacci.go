@@ -27,7 +27,6 @@ func init() {
 	// 1.2、斐波那契 数列  -- 闭包方式
 	// fmt.Printf("fibonacci2 : %d\n", fibonacci2(10))
 
-
 	// 1.3、基于内存缓存实现的菲波那切数列
 	/* var result uint64
 	start1 := time.Now()
@@ -39,6 +38,13 @@ func init() {
 	fmt.Printf("fibonacci(%d) is: %d\n", LIM, result)
 	fmt.Printf("longCalculation took this amount of time: %s\n", delta1) */
 
+	// 1.4、基于切片实现的菲波那切数列
+	start1 := time.Now()
+	result := fibonacci4(41)
+	end1 := time.Now()
+	delta1 := end1.Sub(start1)
+	fmt.Printf("fibonacci(%d) is: %d\n", LIM, result)
+	fmt.Printf("longCalculation took this amount of time: %s\n", delta1)
 
 	// 2、递归打印  10-1
 	// printNum(10)
@@ -150,6 +156,19 @@ func fibonacci3(n int) (res uint64) {
 	}
 	fibs[n] = res
 	return
+}
+
+// 1.4、 基于切片实现的菲波那切数列
+/**
+@param term 要求菲波那切数列的目标数
+*/
+func fibonacci4(term int) int {
+	farr := make([]int, term + 1)
+	farr[0], farr[1] = 1, 1
+	for i := 2; i <= term; i++ {
+		farr[i] = farr[i-1] + farr[i-2]
+	}
+	return farr[term]
 }
 
 // 2、递归打印  10-1

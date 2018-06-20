@@ -43,7 +43,7 @@ func init() {
 	// function1()
 	// abc()
 	// func1("Go")
-	func2()
+	// func2()
 
 	// 练习题：
 	/* ret1, err1 := MySqrt(-1)
