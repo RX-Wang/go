@@ -39,12 +39,12 @@ func init() {
 	fmt.Printf("longCalculation took this amount of time: %s\n", delta1) */
 
 	// 1.4、基于切片实现的菲波那切数列
-	start1 := time.Now()
+	/* start1 := time.Now()
 	result := fibonacci4(41)
 	end1 := time.Now()
 	delta1 := end1.Sub(start1)
 	fmt.Printf("fibonacci(%d) is: %d\n", LIM, result)
-	fmt.Printf("longCalculation took this amount of time: %s\n", delta1)
+	fmt.Printf("longCalculation took this amount of time: %s\n", delta1) */
 
 	// 2、递归打印  10-1
 	// printNum(10)
