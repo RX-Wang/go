@@ -5,8 +5,14 @@
 package pkg1
 
 import (
-	// "bytes"
+	"bytes"
 	"fmt"
+	// "sort"
+	"io/ioutil"
+	"os"
+	"path/filepath"
+	"regexp"
+	"strings"
 )
 
 func init() {
@@ -123,6 +129,53 @@ func init() {
 	fmt.Println("new sl--insert1：", sl)
 	sl = append(sl, slEndPart...)
 	fmt.Println("new sl--insert2：", sl) */
-	aa := [5]int{1,2,3,4,5}
-	fmt.Println(len(aa[2:2]))
+
+	// 9、校验变长参数的格式
+	// multiParams(1, 2, 3, 4, 5, 6, 7)
+
+	// 10、stirng -> byte 切片 -> 并进行排序
+	const str1 string = "aaasdfaqwerbzxcv'l;kdefghijklmn"
+	stringByte := []byte(str1)
+	fmt.Println(stringByte)
+	stringSlice := str1[:]
+	fmt.Printf("%T\n", stringSlice)
+
+	// 11、切片内存释放 -- 读取文件
+	// 获取当前 文件夹
+	// getCurrentDirectory()
+
+	// 获取当前文件的绝对路径
+	/* absPath, _ := filepath.Abs("main/pkg1/test.txt")
+	fmt.Println(absPath)
+	findFileDigits(absPath) */
+
+}
+
+func multiParams(params ...int) {
+	fmt.Println(params, len(params))
+}
+
+func findFileDigits(filename string) {
+	var digitRegexp = regexp.MustCompile("[0-9]+")
+	fileBytes, fileError := ioutil.ReadFile(filename)
+	fmt.Println(fileBytes, fileError)
+	b := digitRegexp.FindAll(fileBytes, len(fileBytes))
+	fmt.Println(b)
+	c := make([]byte, 0)
+	for _, bytes := range b {
+		c = append(c, bytes...)
+	}
+	fmt.Println(c)
+	// 先将 byte切片转化为buffer，然后在转化为 string
+	fmt.Println(bytes.NewBuffer(c).String())
+}
+
+// 获取当前文件的路径
+func getCurrentDirectory() {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	fmt.Println("当前文件夹：", dir)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println("当前文件夹-replace：", strings.Replace(dir, "\\", "/", -1))
 }
