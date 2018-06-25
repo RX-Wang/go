@@ -133,12 +133,12 @@ func init() {
 	// 9、校验变长参数的格式
 	// multiParams(1, 2, 3, 4, 5, 6, 7)
 
-	// 10、stirng -> byte 切片 -> 并进行排序
-	const str1 string = "aaasdfaqwerbzxcv'l;kdefghijklmn"
+	// 10、stirng -> byte 切片 -> 并进行排序  // 没写完
+	/* const str1 string = "aaasdfaqwerbzxcv'l;kdefghijklmn"
 	stringByte := []byte(str1)
 	fmt.Println(stringByte)
 	stringSlice := str1[:]
-	fmt.Printf("%T\n", stringSlice)
+	fmt.Printf("%T\n", stringSlice) */
 
 	// 11、切片内存释放 -- 读取文件
 	// 获取当前 文件夹
@@ -149,6 +149,27 @@ func init() {
 	fmt.Println(absPath)
 	findFileDigits(absPath) */
 
+	// 12、字符串 和 切片
+
+	// 12.1 截取字符串
+	const s = "abcdefghijklmn"
+	fmt.Println(s[2:3])
+
+	// 12.2 map 为引用类型。
+	map1 := map[string]string{"name": "Diana", "age": "16"}
+	map2 := make(map[string]string)
+	map2["name"] = "Diana"
+	map2["age"] = "16"
+	map11 := map1
+	map22 := map2
+	map11["name"] = "lisi"
+	map22["name"] = "lisi"
+	// fmt.Println(map11, map22)
+	// fmt.Println(map1, map2)
+
+	// 12.3 判断map中是否存在某一个key
+	_, isMap1HasAgeKey := map1["sex"]
+	fmt.Println("检验 map1中是否含有age 这个key：", isMap1HasAgeKey)
 }
 
 func multiParams(params ...int) {
