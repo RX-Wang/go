@@ -36,14 +36,14 @@ func multiGet(urls []string) []RemoteResult {
 
 func init() {
 	/* urls := []string{
-			"http://127.0.0.1/test.php?i=13\n",
-			"http://127.0.0.1/test.php?i=14\n",
-			"http://127.0.0.1/test.php?i=15\n",
-			"http://127.0.0.1/test.php?i=16\n",
-			"http://127.0.0.1/test.php?i=17\n",
-			"http://127.0.0.1/test.php?i=18\n",
-			"http://127.0.0.1/test.php?i=19\n",
-			"http://127.0.0.1/test.php?i=20\n"    }
+		"http://127.0.0.1/test.php?i=13\n",
+		"http://127.0.0.1/test.php?i=14\n",
+		"http://127.0.0.1/test.php?i=15\n",
+		"http://127.0.0.1/test.php?i=16\n",
+		"http://127.0.0.1/test.php?i=17\n",
+		"http://127.0.0.1/test.php?i=18\n",
+		"http://127.0.0.1/test.php?i=19\n",
+		"http://127.0.0.1/test.php?i=20\n"}
 	content := multiGet(urls)
 	fmt.Println(content) */
 }
