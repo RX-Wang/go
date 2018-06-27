@@ -1,9 +1,10 @@
 package main
 
 import (
-	V "./pkg1" // 给包起一个别名
-	// "./trains" // 直接使用包的名字
+	V "main/pkg1" // 给包起一个别名
+	// "main/trains" // 直接使用包的名字
 	"fmt"
+	// "github.com/golang/protobuf/proto"  // 引入第三方包
 )
 
 var a = "G"
@@ -30,6 +31,7 @@ func main() {
   // print(a)
 	// f1()
 	// print(`This is a raw string \n`) // 会原样输出
+	
 }
 
 /* func n() { print(a) }
