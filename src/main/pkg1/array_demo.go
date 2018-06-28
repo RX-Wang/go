@@ -168,8 +168,8 @@ func init() {
 	// fmt.Println(map1, map2)
 
 	// 12.3 判断map中是否存在某一个key
-	_, isMap1HasAgeKey := map1["sex"]
-	fmt.Println("检验 map1中是否含有age 这个key：", isMap1HasAgeKey)
+	// _, isMap1HasAgeKey := map1["sex"]
+	// fmt.Println("检验 map1中是否含有age 这个key：", isMap1HasAgeKey)
 }
 
 func multiParams(params ...int) {
