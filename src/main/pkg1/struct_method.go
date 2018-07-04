@@ -67,7 +67,7 @@ func init() {
 		refTag(tt, i)
 	} */
 
-	// 3、匿名结构体 + 内嵌结构体
+	// 3、结构体匿名字段 + 内嵌结构体
 	outer := new(outerS)
 	outer.b = 6
 	outer.c = 7.5
