@@ -36,6 +36,13 @@ type outerS struct {
 	innerS // 内嵌结构体
 }
 
+// 4、命名冲突-- 重载
+type aStruct struct{ a, b int }
+type bStruct struct {
+	aStruct
+	a float32
+}
+
 func init() {
 	/* ms := new(struct1) // 得到：指针类型
 	fmt.Println(ms)    // 得到的一个指向默认struct1实例的指针，实例的各个字段为默认值。
@@ -68,22 +75,34 @@ func init() {
 	} */
 
 	// 3、结构体匿名字段 + 内嵌结构体
-	outer := new(outerS)
-	outer.b = 6
-	outer.c = 7.5
-	outer.int = 60 // 给匿名字段赋值
-	outer.in1 = 5
-	outer.in2 = 10
+	// 3.1、 使用 new 进行实例化
+	/*
+		outer := new(outerS)
+		outer.b = 6
+		outer.c = 7.5
+		outer.int = 60 // 给匿名字段赋值
+		outer.in1 = 5
+		outer.in2 = 10
 
-	fmt.Printf("outer.b is: %d\n", outer.b)
-	fmt.Printf("outer.c is: %f\n", outer.c)
-	fmt.Printf("outer.int is: %d\n", outer.int)
-	fmt.Printf("outer.in1 is: %d\n", outer.in1)
-	fmt.Printf("outer.in2 is: %d\n", outer.in2)
+		fmt.Printf("outer.b is: %d\n", outer.b)
+		fmt.Printf("outer.c is: %f\n", outer.c)
+		fmt.Printf("outer.int is: %d\n", outer.int)
+		fmt.Printf("outer.in1 is: %d\n", outer.in1)
+		fmt.Printf("outer.in2 is: %d\n", outer.in2)
 
-	// 使用结构体字面量
-	outer2 := outerS{6, 7.5, 60, innerS{5, 10}} // innerS：内嵌结构体
-	fmt.Println("outer2 is:", outer2)
+		// 3.2、使用字面量方式实例化
+		outer2 := outerS{6, 7.5, 60, innerS{5, 10}} // innerS：内嵌结构体
+		fmt.Println("outer2 is:", outer2)
+	*/
+
+	// 4、命名冲突-- 重载
+	bS := new(bStruct)
+	bS.aStruct.a = 1233
+	bS.a = 1.23
+	fmt.Println(bS.aStruct.a, bS.aStruct.b, bS.b, bS.a)
+
+	bSS := bStruct{aStruct{123, 321}, 1.3}
+	fmt.Println(bSS.aStruct, bSS.a)
 }
 
 func refTag(tt TagType, ix int) {
