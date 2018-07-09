@@ -36,11 +36,16 @@ type outerS struct {
 	innerS // 内嵌结构体
 }
 
-// 4、命名冲突-- 重载
+// 4、命名冲突（结构体内嵌时）-- 重载
 type aStruct struct{ a, b int }
 type bStruct struct {
 	aStruct
 	a float32
+}
+
+// 5、 结构体的方法  以 innerS 为例
+func (ins *innerS) sum() int {
+	return ins.in1 + ins.in2
 }
 
 func init() {
@@ -96,13 +101,17 @@ func init() {
 	*/
 
 	// 4、命名冲突-- 重载
-	bS := new(bStruct)
-	bS.aStruct.a = 1233
-	bS.a = 1.23
-	fmt.Println(bS.aStruct.a, bS.aStruct.b, bS.b, bS.a)
+	/* 	bS := new(bStruct)
+	   	bS.aStruct.a = 1233
+	   	bS.a = 1.23
+	   	fmt.Println(bS.aStruct.a, bS.aStruct.b, bS.b, bS.a)
 
-	bSS := bStruct{aStruct{123, 321}, 1.3}
-	fmt.Println(bSS.aStruct, bSS.a)
+	   	bSS := bStruct{aStruct{123, 321}, 1.3}
+	   	fmt.Println(bSS.aStruct, bSS.a) */
+
+	// 5、结构体 + 方法
+	ins := innerS{12, 13}
+	fmt.Println("结构体+方法--求和：", ins.sum())
 }
 
 func refTag(tt TagType, ix int) {
