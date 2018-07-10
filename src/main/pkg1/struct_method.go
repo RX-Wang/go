@@ -8,6 +8,8 @@ import (
 	"fmt"
 	// "unsafe"
 	"reflect"
+	"strconv"
+	"time"
 )
 
 type struct1 struct {
@@ -27,6 +29,7 @@ type TagType struct { // tags
 type innerS struct {
 	in1 int
 	in2 int
+	b   int
 }
 
 type outerS struct {
@@ -43,9 +46,46 @@ type bStruct struct {
 	a float32
 }
 
-// 5、 结构体的方法  以 innerS 为例
+// 5.1、 结构体的方法  以 innerS 为接受者-- ins 的作用相当于 this
 func (ins *innerS) sum() int {
 	return ins.in1 + ins.in2
+}
+
+// 5.2、 非结构体方法
+type intVector []int
+
+func (v intVector) sum() (s int) {
+	for _, x := range v {
+		s += x
+	}
+	return
+}
+
+// 6、给非本地类型 定义方法  -- 先给类型起一个别名，然后赋方法
+type myTime struct {
+	aField    int
+	time.Time // 匿名字段
+}
+
+// 重载String 方法， 遍历 结构体
+func (t myTime) String() string {
+	var s = "{ "
+	v := reflect.ValueOf(t)
+	count := v.NumField()
+	for i := 0; i < count; i++ {
+		fmt.Println("--------", v.Field(i), v.Field(i).Kind())
+		switch v.Field(i).Kind() {
+		case reflect.Int:
+			s = s + strconv.FormatInt(v.Field(i).Int(), 10) + ", "
+		case reflect.Struct:
+			s = s + v.Field(i).String()
+		}
+	}
+	return s + " }"
+}
+
+func (t myTime) first3Chars() string {
+	return t.Time.String()[0:3]
 }
 
 func init() {
@@ -81,41 +121,50 @@ func init() {
 
 	// 3、结构体匿名字段 + 内嵌结构体
 	// 3.1、 使用 new 进行实例化
-	/*
-		outer := new(outerS)
-		outer.b = 6
-		outer.c = 7.5
-		outer.int = 60 // 给匿名字段赋值
-		outer.in1 = 5
-		outer.in2 = 10
 
-		fmt.Printf("outer.b is: %d\n", outer.b)
-		fmt.Printf("outer.c is: %f\n", outer.c)
-		fmt.Printf("outer.int is: %d\n", outer.int)
-		fmt.Printf("outer.in1 is: %d\n", outer.in1)
-		fmt.Printf("outer.in2 is: %d\n", outer.in2)
+	/* outer := new(outerS)
+	outer.b = 6
+	outer.c = 7.5
+	outer.int = 60 // 给匿名字段赋值
+	outer.in1 = 5
+	outer.in2 = 10
 
-		// 3.2、使用字面量方式实例化
-		outer2 := outerS{6, 7.5, 60, innerS{5, 10}} // innerS：内嵌结构体
-		fmt.Println("outer2 is:", outer2)
-	*/
+	fmt.Printf("outer.b is: %d\n", outer.b)
+	fmt.Printf("outer.c is: %f\n", outer.c)
+	fmt.Printf("outer.int is: %d\n", outer.int)
+	fmt.Printf("outer.in1 is: %d\n", outer.in1)
+	fmt.Printf("outer.in2 is: %d\n", outer.in2)
+	fmt.Println("outer is :", outer) */
+
+	// 3.2、使用字面量方式实例化
+	/* 	outer2 := outerS{6, 7.5, 60, innerS{5, 10, 1}} // innerS：内嵌结构体
+	fmt.Println("outer2 is:", outer2) */
 
 	// 4、命名冲突-- 重载
-	/* 	bS := new(bStruct)
-	   	bS.aStruct.a = 1233
-	   	bS.a = 1.23
+	/* 	var bS = new(bStruct)
+	   	bS.aStruct.a = 1233  // 给内嵌结构体的字段赋值
+	   	bS.a = 1.23   // 重载 a 字段
 	   	fmt.Println(bS.aStruct.a, bS.aStruct.b, bS.b, bS.a)
 
 	   	bSS := bStruct{aStruct{123, 321}, 1.3}
 	   	fmt.Println(bSS.aStruct, bSS.a) */
 
-	// 5、结构体 + 方法
-	ins := innerS{12, 13}
+	// 5.1、结构体 + 方法
+	/* ins := innerS{12, 13, 1}
 	fmt.Println("结构体+方法--求和：", ins.sum())
+
+	// 5.2、 非结构体方法
+	fmt.Println("非结构体 方法：", intVector{1, 2, 3}.Sum()) */
+
+	// 6、给非本地类型 定义方法  -- 先给类型起一个别名，然后赋方法
+	mt := myTime{12, time.Now()}
+	fmt.Println("mt is:", mt) // 默认调用 String 方法。
+	fmt.Printf("Full time now is :%v\n", mt.Time.String())
+	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars())
 }
 
-func refTag(tt TagType, ix int) {
+/* func refTag(tt TagType, ix int) {
 	ttType := reflect.TypeOf(tt)
 	ixField := ttType.Field(ix)
 	fmt.Printf("%v\n", ixField.Tag)
-}
+} */
