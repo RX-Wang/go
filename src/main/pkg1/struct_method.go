@@ -67,7 +67,7 @@ type myTime struct {
 	time.Time // 匿名字段
 }
 
-// 重载String 方法， 遍历 结构体
+// 6--、重载String 方法， 遍历 结构体
 func (t myTime) String() string {
 	var s = "{ "
 	v := reflect.ValueOf(t)
@@ -86,6 +86,33 @@ func (t myTime) String() string {
 
 func (t myTime) first3Chars() string {
 	return t.Time.String()[0:3]
+}
+
+// 7、 类型中嵌入功能
+type Log struct {
+	msg string
+}
+
+type customer struct {
+	name string
+	// _log *Log
+	Log
+}
+
+func (l *Log) Add(s string) {
+	l.msg += "\n" + s
+}
+
+func (l *Log) String() string {
+	return l.msg
+}
+
+// func (c *customer) Log() *Log {
+// 	return c._log
+// }
+
+func (c *customer) String() string {
+	return c.name + "\nLog:" + fmt.Sprintln(c.Log)
 }
 
 func init() {
@@ -157,10 +184,19 @@ func init() {
 	fmt.Println("非结构体 方法：", intVector{1, 2, 3}.Sum()) */
 
 	// 6、给非本地类型 定义方法  -- 先给类型起一个别名，然后赋方法
-	mt := myTime{12, time.Now()}
+	/* mt := myTime{12, time.Now()}
 	fmt.Println("mt is:", mt) // 默认调用 String 方法。
 	fmt.Printf("Full time now is :%v\n", mt.Time.String())
-	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars())
+	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars()) */
+
+	// 7、类型中嵌入功能
+	// c := &customer{"奥巴马", &Log{"我叫奥巴马！！！！"}}
+	// c.Log().Add("来打我呀！！你来呀！！")
+	// fmt.Println(c._log)
+	// fmt.Println(c.Log())
+	c := &customer{"Barak Obama", Log{"1 - Yes we can!"}}
+	c.Add("2 - After me the world will be a better place!")
+	fmt.Println(c)
 }
 
 /* func refTag(tt TagType, ix int) {
