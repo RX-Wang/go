@@ -89,13 +89,13 @@ func (t myTime) first3Chars() string {
 }
 
 // 7、 类型中嵌入功能
-type Log struct {
+/* type Log struct {
 	msg string
 }
 
 type customer struct {
 	name string
-	// _log *Log
+	// _log *Log  // 定名内嵌结构体
 	Log
 }
 
@@ -107,12 +107,52 @@ func (l *Log) String() string {
 	return l.msg
 }
 
+// 定名内嵌结构体
 // func (c *customer) Log() *Log {
 // 	return c._log
 // }
 
 func (c *customer) String() string {
 	return c.name + "\nLog:" + fmt.Sprintln(c.Log)
+} */
+
+// 8、多重继承
+/* type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+	return "Click"
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+	return "Ring Ring"
+}
+
+type CameraPhone struct {
+	Camera
+	Phone
+} */
+
+// 8。1、多重继承  练习题：
+type Base struct{}
+
+func (Base) Magic() {
+	fmt.Println("base magic")
+}
+
+func (self Base) MoreMagic() {
+	self.Magic()
+	self.Magic()
+}
+
+type Voodoo struct {
+	Base
+}
+
+// 重载了 Base 的 Magic 方法
+func (Voodoo) Magic() {
+	fmt.Println("voodoo magic")
 }
 
 func init() {
@@ -190,13 +230,30 @@ func init() {
 	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars()) */
 
 	// 7、类型中嵌入功能
-	// c := &customer{"奥巴马", &Log{"我叫奥巴马！！！！"}}
-	// c.Log().Add("来打我呀！！你来呀！！")
-	// fmt.Println(c._log)
-	// fmt.Println(c.Log())
-	c := &customer{"Barak Obama", Log{"1 - Yes we can!"}}
-	c.Add("2 - After me the world will be a better place!")
-	fmt.Println(c)
+	// 定名内嵌结构体
+	// c1 := &customer{"奥巴马", &Log{"我叫奥巴马！！！！"}}
+	// c1.Log().Add("来打我呀！！你来呀！！")
+	// fmt.Println(c1._log)
+	// fmt.Println(c1.Log())
+	// 匿名内嵌结构体
+	// c2 := &customer{"Barak Obama", Log{"1 - Yes we can!"}}
+	// c2.Add("2 - After me the world will be a better place!")
+	// fmt.Println(c2)
+
+	// 8、多重继承
+	/* cp := new(CameraPhone)
+	fmt.Println("Our new CameraPhone exhibits multiple behaviors...")
+	fmt.Println("It exhibits behavior of a Camera: ", cp.TakeAPicture())
+	fmt.Println("It works like a Phone too: ", cp.Call()) */
+
+	// 8。1、多重继承  练习题：
+	/* v := new(Voodoo)
+	v.Magic()
+	// 继承自 Base结构体的  方法。
+	v.MoreMagic() */
+	fmt.Printf("%10.2e\n", 12.355678)
+	fmt.Printf("%10.2f\n", 12.345678)
+	fmt.Printf("%10.2g\n", 12.645678)
 }
 
 /* func refTag(tt TagType, ix int) {
