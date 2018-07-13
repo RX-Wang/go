@@ -246,14 +246,14 @@ func init() {
 	fmt.Println("It exhibits behavior of a Camera: ", cp.TakeAPicture())
 	fmt.Println("It works like a Phone too: ", cp.Call()) */
 
-	// 8。1、多重继承  练习题：
+	// 8.1、多重继承  练习题：
 	/* v := new(Voodoo)
 	v.Magic()
 	// 继承自 Base结构体的  方法。
 	v.MoreMagic() */
-	fmt.Printf("%10.2e\n", 12.355678)
-	fmt.Printf("%10.2f\n", 12.345678)
-	fmt.Printf("%10.2g\n", 12.645678)
+	// fmt.Printf("%10.2e\n", 12.355678)
+	// fmt.Printf("%10.2f\n", 12.345678)
+	// fmt.Printf("%10.2g\n", 12.645678)
 }
 
 /* func refTag(tt TagType, ix int) {
