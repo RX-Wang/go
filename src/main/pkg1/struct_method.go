@@ -224,11 +224,12 @@ func init() {
 	fmt.Println("非结构体 方法：", intVector{1, 2, 3}.Sum()) */
 
 	// 6、给非本地类型 定义方法  -- 先给类型起一个别名，然后赋方法
-	/* mt := myTime{12, time.Now()}
-	fmt.Println("mt is:", mt) // 默认调用 String 方法。
+/* 	
+	mt := myTime{12, time.Now()}
+	fmt.Println("mt is:", mt) // 默认调用 String 方法(我们重载的那个)。
 	fmt.Printf("Full time now is :%v\n", mt.Time.String())
-	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars()) */
-
+	fmt.Printf("First 3 chars is :%v\n", mt.first3Chars())
+ */
 	// 7、类型中嵌入功能
 	// 定名内嵌结构体
 	// c1 := &customer{"奥巴马", &Log{"我叫奥巴马！！！！"}}
