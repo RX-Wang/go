@@ -6,6 +6,7 @@ package pkg1
 import (
 	"fmt"
 	"math"
+	"reflect"
 )
 
 // 1、接口的实现
@@ -47,6 +48,12 @@ func (sq *Square) Area() float32 {
 
 func (ci *Circle) Area() float32 {
 	return ci.radius * ci.radius * math.Pi
+}
+
+// 4.3、通过反射修改 属性值
+type T struct {
+	A int
+	B string
 }
 
 // 练习题 1：
@@ -113,17 +120,64 @@ func init() {
 	} */
 
 	// 3、 type-switch 判断 接口变量的类型
-/* 	switch areaIntf.(type) {
-	case *Circle:
-		fmt.Printf("type is Circle\n")
-	default:
-		fmt.Println("没有匹配项")
-	} */
-	
+	/* 	switch areaIntf.(type) {
+	   	case *Circle:
+	   		fmt.Printf("type is Circle\n")
+	   	default:
+	   		fmt.Println("没有匹配项")
+	   	} */
 
+	// 4.1、反射
+	/*
+		var x float64 = 3.4
+		fmt.Println("type:", reflect.TypeOf(x))
+		v := reflect.ValueOf(x)
+		fmt.Println("value:", v)
+		fmt.Println("type:", v.Type())
+		fmt.Println("kind:", v.Kind())
+		fmt.Println("value:", v.Float())
+		fmt.Println(v.Interface())
+		fmt.Printf("value is %5.2e\n", v.Interface())
+		y := v.Interface().(float64)
+		fmt.Println(y)
+	*/
+
+	// 4.2、通过反射 修改或设置值
+	/*
+		var x float64 = 3.4
+		v := reflect.ValueOf(x)
+		// setting a value:
+		// v.SetFloat(3.1415) // Error: will panic: reflect.Value.SetFloat using unaddressable value
+		fmt.Println("settability of v:", v.CanSet())
+		v = reflect.ValueOf(&x) // Note: take the address of x.
+		fmt.Println("type of v:", v.Type())
+		fmt.Println("settability of v:", v.CanSet())
+		v = v.Elem()
+		fmt.Println("The Elem of v is: ", v)
+		fmt.Println("settability of v:", v.CanSet())
+		v.SetFloat(3.1415) // this works!
+		fmt.Println(v.Interface())
+		fmt.Println(v)
+	*/
+
+	// 4.3、通过反射修改 属性值
+	t := T{23, "skidoo"}
+	s := reflect.ValueOf(&t)
+	fmt.Println("s is : ", s) // s is :  &{23 skidoo}
+	s = s.Elem()
+	typeOfT := s.Type()
+	fmt.Println("ValueOf 之后 的 Type：", typeOfT) // ValueOf 之后 的 Type： pkg1.T
+	for i := 0; i < s.NumField(); i++ {
+		f := s.Field(i)
+		fmt.Printf("%d: %s %s = %v---Field:%v\n", i, typeOfT.Field(i).Name, f.Type(), f.Interface(), f)
+	}
+	s.Field(0).SetInt(77)
+	s.Field(1).SetString("Sunset Strip")
+	fmt.Println("t is now", t)
 
 	// 练习题 1：
-	/* var s Simple
-	fmt.Println(fI(&s))
+	/*
+		var s Simple
+		fmt.Println(fI(&s))
 	*/
 }
