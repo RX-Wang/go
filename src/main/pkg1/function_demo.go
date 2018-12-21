@@ -25,12 +25,13 @@ func init() {
 	// PrintValues()
 
 	// 4、改变外部变量（指针传递）
-	/* 	n := 0
-	   	reply := &n
-	   	Multiply(10, 5, reply)
-	   	fmt.Println("Multiply:", *reply) // Multiply: 50
-	   	fmt.Println("n :", n) */
-
+/*
+	n := 0
+	reply := &n
+	Multiply(10, 5, reply)
+	fmt.Println("Multiply:", *reply) // Multiply: 50
+	fmt.Println("n :", n) // n：50
+*/
 	// 5、变长参数的函数
 	/* x := min(1, 3, 2, 0)
 	fmt.Printf("The minimum is: %d\n", x)
@@ -172,8 +173,8 @@ func MySqrt2(f float64) (ret float64, err error) {
 	return
 }
 
-/* // 该函数 编译错误
-func (st *Stack) Pop() int {
+// 该函数 编译错误
+/* func (st *Stack) Pop() int {
 	v := 0
 	for ix := len(st) - 1; ix >= 0; ix-- {
 			if v = st[ix]; v != 0 {

@@ -3,6 +3,7 @@ package pkg1
 import (
 	// "fmt"
 	// "os"
+	"fmt"
 )
 
 /**
@@ -24,7 +25,23 @@ func getG(_len int) (gs string) {
 	return gs
 }
 
+func prtMap(myMap map[int]*int) {
+	for key, value := range myMap {
+		fmt.Printf("map[%v]=%v\n", key, *value)
+	}
+}
+
 func init() {
+/*
+	slice := []int{0, 1, 2, 3}
+	myMap := make(map[int]*int)
+
+	for index, value := range slice {
+		myMap[index] = &value
+	}
+	fmt.Println("=====new map=====")
+	prtMap(myMap)
+*/
 	/* // 1: 有条件的For 循环
 	for i := 0; i < 15; i++ {
 		fmt.Printf("The counter is at %d\n", i)
@@ -78,13 +95,13 @@ func init() {
 	}
 	fmt.Println(iii) */
 
-	/* for i := 0; i < 5; i++ {
+/* 	for i := 0; i < 5; i++ {
 		var v int
-		fmt.Printf("%d ", v)
+		fmt.Printf("i的值是：%d ", v) // 0
 		v = 5
-	}
+	} */
 
-	s := ""
+	/* s := ""
 	for s != "aaaaa" {
 		fmt.Println("Value of s:", s)
 		s = s + "a"
