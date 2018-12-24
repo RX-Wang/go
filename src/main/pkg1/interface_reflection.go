@@ -163,17 +163,17 @@ func init() {
 	// 4.3、通过反射修改 属性值
 	t := T{23, "skidoo"}
 	s := reflect.ValueOf(&t)
-	fmt.Println("s is : ", s) // s is :  &{23 skidoo}
+	// fmt.Println("s is : ", s) // s is :  &{23 skidoo}
 	s = s.Elem()
 	typeOfT := s.Type()
-	fmt.Println("ValueOf 之后 的 Type：", typeOfT) // ValueOf 之后 的 Type： pkg1.T
+	// fmt.Println("ValueOf 之后 的 Type：", typeOfT) // ValueOf 之后 的 Type： pkg1.T
 	for i := 0; i < s.NumField(); i++ {
 		f := s.Field(i)
 		fmt.Printf("%d: %s %s = %v---Field:%v\n", i, typeOfT.Field(i).Name, f.Type(), f.Interface(), f)
 	}
 	s.Field(0).SetInt(77)
 	s.Field(1).SetString("Sunset Strip")
-	fmt.Println("t is now", t)
+	// fmt.Println("t is now", t)
 
 	// 练习题 1：
 	/*
